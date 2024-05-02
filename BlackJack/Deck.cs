@@ -15,6 +15,7 @@ namespace BlackJack
             string[] rank = { "A", "1", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K" };
             int[] value = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
 
+            //カードをcreateしてdeckに追加
             for (int i = 0; i < type.Length; i++)
             {
                 for (int j = 0; j < rank.Length; j++)
@@ -25,7 +26,7 @@ namespace BlackJack
             }
         }
 
-        //Suffle cards
+        //カードをシャッフル
         public void Suffle()
         {
             Random random = new Random();
@@ -38,6 +39,17 @@ namespace BlackJack
             }
         }
 
+        //カードを引く
+        public Card GetCards()
+        {
+            Card card = cardsList[0];
+            cardsList.RemoveAt(0);
+            return card;
+        }
 
+        //残るカード数を数える
+        public int GetRemainingCards()
+        { return cardsList.Count; }
+        
     }
 }
