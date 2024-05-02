@@ -27,7 +27,7 @@ namespace BlackJack
         }
 
         //カードをシャッフル
-        public void Suffle()
+        public void Shuffle()
         {
             Random random = new Random();
             for (int i = cardsList.Count - 1; i >= 0; i--)
@@ -49,7 +49,9 @@ namespace BlackJack
 
         //残るカード数を数える
         public int GetRemainingCards()
-        { return cardsList.Count; }
+        { 
+            return cardsList.Count; 
+        }
         
     }
 }
