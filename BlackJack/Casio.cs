@@ -36,13 +36,16 @@ namespace BlackJack
             Console.WriteLine("あなたの引いたカードは");
             foreach (Card card in player.Hand)
             {
-                Console.WriteLine($"{0} of {1}, {card.Rank} {card.Type}");
+                Console.WriteLine("{0} of {1}", card.Rank, card.Type);
             }
 
             //ディーラーの手札を表示
             Console.WriteLine("ディーラーのカードは:");
-            Console.WriteLine($"{0}of{1}, {dealer.Hand[0].Rank} {dealer.Hand[0].Type}");
+            Console.WriteLine("{0} of {1}", dealer.Hand[0].Rank, dealer.Hand[0].Type);
             Console.WriteLine("ディーラーの2枚目のカードは分かりません。");
+
+            int value = player.GetHandValue();
+            Console.WriteLine($"あなたの現在の得点は{value}です。");
 
             //プレーヤーのターン
             while (true)
@@ -61,8 +64,10 @@ namespace BlackJack
                     Console.WriteLine("あなたが引いたカードは");
                     foreach (Card playercard in player.Hand)
                     {
-                        Console.WriteLine($"{0} of {1}, {playercard.Rank} {playercard.Type}");
+                        Console.WriteLine("{0} of {1}", playercard.Rank, playercard.Type);
                     }
+                    value += card.Value;
+                    Console.WriteLine($"あなたの現在の得点は{value}です。");
 
                     //プレーヤーの合計値が21以上になら、burstになる
                     if (player.GetHandValue() >= 21)
@@ -95,7 +100,7 @@ namespace BlackJack
             Console.WriteLine("ディーラーのカードは");
             foreach (Card card in dealer.Hand)
             {
-                Console.WriteLine("{0}of{1}", card.Rank, card.Type);
+                Console.WriteLine("{0} of {1}", card.Rank, card.Type);
             }
             Console.WriteLine("ディーラーの得点は：{0}", dealer.GetHandValue());
 

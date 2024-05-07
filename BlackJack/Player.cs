@@ -18,7 +18,6 @@ namespace BlackJack
         //プレーヤーまたはディーラーの手札にカードを追加
         public void AddCardToHand(Card card)
         {
-            Console.WriteLine($"Playerのカードは{card}");
             Hand.Add(card);
         }
 
