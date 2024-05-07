@@ -30,10 +30,10 @@ namespace BlackJack
         public void Shuffle()
         {
             Random random = new Random();
-            for (int i = cardsList.Count - 1; i >= 0; i--)
+            for (int i = cardsList.Count - 1; i > 0; i--)
             {
                 int j = random.Next(i+1);
-                Card temp = cardsList[j];
+                Card temp = cardsList[i];
                 cardsList[i] = cardsList[j];
                 cardsList[j] = temp;
             }
