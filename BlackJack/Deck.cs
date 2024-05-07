@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack
 {
-    internal class Deck
+    internal class Deck  //山札を表すクラス
     {
         public List<Card> cardsList = new List<Card>();
         public Deck()
@@ -39,7 +39,7 @@ namespace BlackJack
             }
         }
 
-        //カードを引く
+        //カードを引いて、deckでそのカードを削除
         public Card GetCards()
         {
             Card card = cardsList[0];
