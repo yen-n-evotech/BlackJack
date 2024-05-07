@@ -11,7 +11,7 @@ namespace BlackJack
         public List<Card> cardsList = new List<Card>();
         public Deck()
         {
-            string[] type = {"heart","diamond","spade","clover"};
+            string[] type = {"ハート","ダイヤ","スペード","クラブ"};
             string[] rank = { "A", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K" };
             int[] value = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
 

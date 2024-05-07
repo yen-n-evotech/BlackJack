@@ -36,12 +36,12 @@ namespace BlackJack
             Console.WriteLine("あなたの引いたカードは");
             foreach (Card card in player.Hand)
             {
-                Console.WriteLine("{0} of {1}", card.Rank, card.Type);
+                Console.WriteLine($"{card.Type}の{card.Rank}");
             }
 
             //ディーラーの手札を表示
             Console.WriteLine("ディーラーのカードは:");
-            Console.WriteLine("{0} of {1}", dealer.Hand[0].Rank, dealer.Hand[0].Type);
+            Console.WriteLine($"{dealer.Hand[0].Type}の{dealer.Hand[0].Rank}");
             Console.WriteLine("ディーラーの2枚目のカードは分かりません。");
 
             int value = player.GetHandValue();
@@ -64,7 +64,7 @@ namespace BlackJack
                     Console.WriteLine("あなたが引いたカードは");
                     foreach (Card playercard in player.Hand)
                     {
-                        Console.WriteLine("{0} of {1}", playercard.Rank, playercard.Type);
+                        Console.WriteLine($"{playercard.Type}の{playercard.Rank}");
                     }
                     value += card.Value;
                     Console.WriteLine($"あなたの現在の得点は{value}です。");
@@ -93,16 +93,16 @@ namespace BlackJack
             Console.WriteLine("あなたのカードは");
             foreach (Card card in player.Hand)
             {
-                Console.WriteLine("{0}of{1}", card.Rank, card.Type);
+                Console.WriteLine($"{card.Type}の{card.Rank}");
             }
-            Console.WriteLine("あなたの得点：{0}", player.GetHandValue());
+            Console.WriteLine($"あなたの得点：{player.GetHandValue()}");
 
             Console.WriteLine("ディーラーのカードは");
             foreach (Card card in dealer.Hand)
             {
                 Console.WriteLine("{0} of {1}", card.Rank, card.Type);
             }
-            Console.WriteLine("ディーラーの得点は：{0}", dealer.GetHandValue());
+            Console.WriteLine($"ディーラーの得点は：{dealer.GetHandValue()}");
 
             //勝敗を判断
             if (player.GetHandValue() > 21)
