@@ -20,7 +20,7 @@ namespace BlackJack
             {
                 for (int j = 0; j < rank.Length; j++)
                 {
-                    Card card = new Card(type[i], rank[j], value[j]);
+                    Card card = new Card(type[i], rank[j], value[j]); //[Unhandled exception. System.IndexOutOfRangeException]error
                     cardsList.Add(card);
                 }
             }
