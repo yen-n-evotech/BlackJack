@@ -12,7 +12,7 @@ namespace BlackJack
         public Deck()
         {
             string[] type = {"heart","diamond","spade","clover"};
-            string[] rank = { "A", "1", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K" };
+            string[] rank = { "A", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K" };
             int[] value = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
 
             //カードをcreateしてdeckに追加
@@ -20,7 +20,7 @@ namespace BlackJack
             {
                 for (int j = 0; j < rank.Length; j++)
                 {
-                    Card card = new Card(type[i], rank[j], value[j]); //[Unhandled exception. System.IndexOutOfRangeException]error
+                    Card card = new Card(type[i], rank[j], value[j]); 
                     cardsList.Add(card);
                 }
             }
