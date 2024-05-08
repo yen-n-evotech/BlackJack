@@ -24,7 +24,7 @@ namespace BlackJack
         //ゲームをスタート
         public void StartGame()
         {
-            Console.WriteLine("Start Game!");
+            Console.WriteLine("ゲームを開始します");
 
             //playerと dealerはカードを引く
             player.AddCardToHand(deck.GetCards());
@@ -33,7 +33,7 @@ namespace BlackJack
             dealer.AddCardToHand(deck.GetCards());
 
             //プレーヤーの手札を表示
-            Console.WriteLine("あなたの引いたカードは");
+            Console.WriteLine("あなたの引いたカードは:");
             foreach (Card card in player.Hand)
             {
                 Console.WriteLine($"{card.Type}の{card.Rank}");
@@ -54,14 +54,14 @@ namespace BlackJack
                 Console.WriteLine("カードを引きますか。引く場合は y を、引かない場合は n を入力してください！");
                 string choice = Console.ReadLine();
 
-                if (choice == "y" )
+                if (choice == "y" ) //ヒット
                 {
                     //カードを引いてdeckに追加
                     Card card = deck.GetCards();
                     player.AddCardToHand(card);
 
                     //プレーヤーの手札を表示
-                    Console.WriteLine("あなたが引いたカードは");
+                    Console.WriteLine("あなたが引いたカードは:");
                     foreach (Card playercard in player.Hand)
                     {
                         Console.WriteLine($"{playercard.Type}の{playercard.Rank}");
@@ -76,9 +76,13 @@ namespace BlackJack
                     }
                 }
 
-                else if (choice == "n")
+                else if (choice == "n")　//スタンド
                 {
                     break;
+                }
+                else
+                {
+                    Console.WriteLine("無効な選択です。引く場合は y を、引かない場合は n を入力してください！");
                 }
             }
 
@@ -90,17 +94,17 @@ namespace BlackJack
             }
 
             //プレーヤーとディーラーの手札を表示
-            Console.WriteLine("あなたのカードは");
+            Console.WriteLine("あなたのカードは:");
             foreach (Card card in player.Hand)
             {
                 Console.WriteLine($"{card.Type}の{card.Rank}");
             }
             Console.WriteLine($"あなたの得点：{player.GetHandValue()}");
 
-            Console.WriteLine("ディーラーのカードは");
+            Console.WriteLine("ディーラーのカードは:");
             foreach (Card card in dealer.Hand)
             {
-                Console.WriteLine("{0} of {1}", card.Rank, card.Type);
+                Console.WriteLine($"{card.Type}の{card.Rank}");
             }
             Console.WriteLine($"ディーラーの得点は：{dealer.GetHandValue()}");
 
@@ -124,6 +128,23 @@ namespace BlackJack
             else
             {
                 Console.WriteLine("あなたの負けです！");
+            }
+
+            //手札をリセット
+            player.ResetHand();
+            dealer.ResetHand();
+
+            //もう一度プレー
+            Console.WriteLine("-------------------------------------------------");
+            Console.WriteLine("ゲームをリスタートしたいか。リスタートしたい場合は yes を、終了したい場合は任意のキーを入力してください！");
+            string answer = Console.ReadLine();
+            if (answer == "yes")
+            {
+                StartGame();
+            }
+            else
+            {
+                Console.WriteLine("★☆★☆　ゲームを終了しました！★☆★☆");
             }
         }
     }
