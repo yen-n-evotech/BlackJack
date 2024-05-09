@@ -8,7 +8,7 @@ class Program
 
         Casio casio = new Casio();
         casio.StartGame();
-
+        
         Console.ReadLine();
     }
 }
