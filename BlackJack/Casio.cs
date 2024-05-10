@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BlackJack
 {
@@ -33,14 +34,17 @@ namespace BlackJack
             dealer.AddCardToHand(deck.GetCards());
 
             //プレーヤーの手札を表示
-            Console.WriteLine("あなたの引いたカードは:");
+            Console.Write("あなたの引いたカード: ");
+            string playerCard = "";
             foreach (Card card in player.Hand)
             {
-                Console.WriteLine($"{card.Type}の{card.Rank}");
+                playerCard += $"{card.Type}の{card.Rank}、";
             }
+            playerCard = playerCard.Remove(playerCard.Length - 1);
+            Console.WriteLine(playerCard);
 
             //ディーラーの手札を表示
-            Console.WriteLine("ディーラーのカードは:");
+            Console.Write("ディーラーの引いたカード: ");
             Console.WriteLine($"{dealer.Hand[0].Type}の{dealer.Hand[0].Rank}");
             Console.WriteLine("ディーラーの2枚目のカードは分かりません。");
 
@@ -51,8 +55,9 @@ namespace BlackJack
             while (true)
             {
                 //プレーヤーがヒットするかスタンドするかを選択
-                Console.WriteLine("カードを引きますか。引く場合は y を、引かない場合は n を入力してください！");
-                string choice = Console.ReadLine();
+                Console.WriteLine("-------------------------------------------------");
+                Console.WriteLine("カードを引きますか。引く場合は Y を、引かない場合は N を入力してください！");
+                string choice = Console.ReadLine().ToLower();
 
                 if (choice == "y" ) //ヒット
                 {
@@ -60,12 +65,9 @@ namespace BlackJack
                     Card card = deck.GetCards();
                     player.AddCardToHand(card);
 
-                    //プレーヤーの手札を表示
-                    Console.WriteLine("あなたが引いたカードは:");
-                    foreach (Card playercard in player.Hand)
-                    {
-                        Console.WriteLine($"{playercard.Type}の{playercard.Rank}");
-                    }
+                    //プレーヤーが引いたカードを表示
+                    Console.WriteLine($"あなたが引いたカード:　{card.Type}の{card.Rank}");
+
                     value += card.Value;
                     Console.WriteLine($"あなたの現在の得点は{value}です。");
 
@@ -82,7 +84,7 @@ namespace BlackJack
                 }
                 else
                 {
-                    Console.WriteLine("無効な選択です。引く場合は y を、引かない場合は n を入力してください！");
+                    Console.WriteLine("無効な選択です。");
                 }
             }
 
@@ -94,19 +96,27 @@ namespace BlackJack
             }
 
             //プレーヤーとディーラーの手札を表示
-            Console.WriteLine("あなたのカードは:");
+            Console.WriteLine("-------------------------------------------------");
+            Console.Write("あなたのカード:　");
+            playerCard = "";
             foreach (Card card in player.Hand)
             {
-                Console.WriteLine($"{card.Type}の{card.Rank}");
+                playerCard += $"{card.Type}の{card.Rank}、" ;            
             }
-            Console.WriteLine($"あなたの得点：{player.GetHandValue()}");
+            playerCard = playerCard.Remove(playerCard.Length - 1);
+            Console.WriteLine(playerCard);
+            Console.WriteLine($"あなたの得点：{player.GetHandValue()}点");
 
-            Console.WriteLine("ディーラーのカードは:");
+            Console.WriteLine("-------------------------------------------------");
+            Console.Write("ディーラーのカード:　");
+            string dealerCard = "";
             foreach (Card card in dealer.Hand)
             {
-                Console.WriteLine($"{card.Type}の{card.Rank}");
+                dealerCard += $"{card.Type}の{card.Rank}、";
             }
-            Console.WriteLine($"ディーラーの得点は：{dealer.GetHandValue()}");
+            dealerCard = dealerCard.Remove(dealerCard.Length - 1);
+            Console.WriteLine(dealerCard);
+            Console.WriteLine($"ディーラーの得点：{dealer.GetHandValue()}点");
 
             //勝敗を判断
             if (player.GetHandValue() > 21)
@@ -136,9 +146,9 @@ namespace BlackJack
 
             //もう一度プレー
             Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine("ゲームをリスタートしたいか。リスタートしたい場合は yes を、終了したい場合は任意のキーを入力してください！");
-            string answer = Console.ReadLine();
-            if (answer == "yes")
+            Console.WriteLine("ゲームをリスタートしますか。リスタートしたい場合は Y を、終了したい場合は任意のキーを入力してください！");
+            string answer = Console.ReadLine().ToLower();
+            if (answer == "y")
             {
                 StartGame();
             }
