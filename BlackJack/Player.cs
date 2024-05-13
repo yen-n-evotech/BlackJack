@@ -8,11 +8,7 @@ namespace BlackJack
 {
     internal class Player 
     {
-        public List<Card> Hand { get; set; } = new List<Card>();
-
-        public Player(string name)
-        { 
-        }
+        public List<Card> Hand { get; set; } = new List<Card>(5);
         
         //プレーヤーまたはディーラーの手札にカードを追加
         public void AddCardToHand(Card card)
@@ -26,7 +22,7 @@ namespace BlackJack
             int value = 0;
             foreach (Card card in Hand)
             {
-                switch(card.Rank) //Type
+                switch(card.Rank) 
                 {
                     case "A":
                         value += 1;

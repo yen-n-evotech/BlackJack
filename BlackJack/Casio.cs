@@ -18,8 +18,8 @@ namespace BlackJack
             deck = new Deck();  //Deckクラスのインスタンス
             deck.Shuffle();
 
-            dealer = new Player("Dealer"); //Playerクラスのインスタンス
-            player = new Player("Player"); //Playerクラスのインスタンス
+            dealer = new Player(); //Playerクラスのインスタンス
+            player = new Player(); //Playerクラスのインスタンス
         }
 
         //ゲームをスタート
@@ -53,7 +53,12 @@ namespace BlackJack
 
             SetPlayerTurn();            
             GetResults();
-            ResetGame();
+
+            //手札をリセット
+            player.ResetHand();
+            dealer.ResetHand();
+
+         
         }
         //プレーヤーのターン
         public void SetPlayerTurn()
@@ -81,6 +86,7 @@ namespace BlackJack
                     //プレーヤーの合計値が21以上になら、burstになる
                     if (player.GetHandValue() >= 21)
                     {
+                        Console.WriteLine("プレイヤーはバーストしたら、ディーラーがカードを引きません。");
                         break;
                     }
                     else
@@ -177,26 +183,6 @@ namespace BlackJack
             else
             {
                 Console.WriteLine("あなたの負けです！");
-            }
-        }
-
-        public void ResetGame()
-        { 
-            //手札をリセット
-            player.ResetHand();
-            dealer.ResetHand();
-
-            //もう一度プレー
-            Console.WriteLine("-------------------------------------------------");
-            Console.WriteLine("ゲームをリスタートしますか。リスタートしたい場合は Y を、終了したい場合は任意のキーを入力してください！");
-            string answer = Console.ReadLine().ToLower();
-            if (answer == "y")
-            {
-                StartGame();
-            }
-            else
-            {
-                Console.WriteLine("★☆★☆　ゲームを終了しました！★☆★☆");
             }
         }
     }

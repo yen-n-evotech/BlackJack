@@ -12,8 +12,8 @@ namespace BlackJack
         public Deck()
         {
             string[] type = {"ハート","ダイヤ","スペード","クラブ"};
-            string[] rank = { "A", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K" };
-            int[] value = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
+            string[] rank = {"A", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K" };
+            int[] value = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
 
             //カードをcreateしてdeckに追加
             for (int i = 0; i < type.Length; i++)
@@ -33,9 +33,9 @@ namespace BlackJack
             for (int i = cardsList.Count - 1; i > 0; i--)
             {
                 int j = random.Next(i+1);
-                Card temp = cardsList[i];
-                cardsList[i] = cardsList[j];
-                cardsList[j] = temp;
+                Card temp = cardsList[j];
+                cardsList[j] = cardsList[i];
+                cardsList[i] = temp;
             }
         }
 
@@ -51,7 +51,6 @@ namespace BlackJack
         public int GetRemainingCards()
         { 
             return cardsList.Count; 
-        }
-        
+        }        
     }
 }
