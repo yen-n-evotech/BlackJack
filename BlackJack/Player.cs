@@ -8,12 +8,28 @@ namespace BlackJack
 {
     internal class Player 
     {
-        public List<Card> Hand { get; set; } = new List<Card>(5);
+        public List<Card> Hand { get; set; } = new List<Card>();
         
         //プレーヤーまたはディーラーの手札にカードを追加
         public void AddCardToHand(Card card)
         {
             Hand.Add(card);
+        }
+
+        // Rankに対応するValueを返却する
+        public int GetCardValue(string rank)
+        {
+            switch (rank)
+            {
+                case "A":
+                    return 1;
+                case "J":
+                case "Q":
+                case "K":
+                    return 10;
+                default:
+                    return int.Parse(rank);
+            }
         }
 
         //手札カードの合計値を計算
@@ -22,24 +38,7 @@ namespace BlackJack
             int value = 0;
             foreach (Card card in Hand)
             {
-                switch(card.Rank) 
-                {
-                    case "A":
-                        value += 1;
-                        break;
-                    case "J":
-                        value += 10;
-                        break;
-                    case "Q":
-                        value += 10;
-                        break;
-                    case "K":
-                        value += 10;
-                        break;
-                    default:
-                        value += int.Parse(card.Rank);
-                        break;
-                }
+                value += GetCardValue(card.Rank);
             }
             return value;
         }

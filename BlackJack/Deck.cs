@@ -8,7 +8,7 @@ namespace BlackJack
 {
     internal class Deck  //山札を表すクラス
     {
-        public List<Card> cardsList = new List<Card>();
+        private List<Card> CardsList = new List<Card>();
         public Deck()
         {
             string[] type = {"ハート","ダイヤ","スペード","クラブ"};
@@ -21,7 +21,7 @@ namespace BlackJack
                 for (int j = 0; j < rank.Length; j++)
                 {
                     Card card = new Card(type[i], rank[j], value[j]); 
-                    cardsList.Add(card);
+                    CardsList.Add(card);
                 }
             }
         }
@@ -30,27 +30,21 @@ namespace BlackJack
         public void Shuffle()
         {
             Random random = new Random();
-            for (int i = cardsList.Count - 1; i > 0; i--)
+            for (int i = CardsList.Count - 1; i > 0; i--)
             {
                 int j = random.Next(i+1);
-                Card temp = cardsList[j];
-                cardsList[j] = cardsList[i];
-                cardsList[i] = temp;
+                Card temp = CardsList[j];
+                CardsList[j] = CardsList[i];
+                CardsList[i] = temp;
             }
         }
 
         //カードを引いて、deckでそのカードを削除
-        public Card GetCards()
+        public Card GetCard()
         {
-            Card card = cardsList[0];
-            cardsList.RemoveAt(0);
+            Card card = CardsList[0];
+            CardsList.RemoveAt(0);
             return card;
-        }
-
-        //残るカード数を数える
-        public int GetRemainingCards()
-        { 
-            return cardsList.Count; 
         }        
     }
 }
