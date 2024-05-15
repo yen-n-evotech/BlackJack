@@ -2,8 +2,6 @@
 
 class Program
 {
-    public const string Line = "-------------------------------------------------";
-
     static void Main(string[] args)
     {        
         Console.WriteLine("★☆★☆　ブラックジャックへようこそ！　★☆★☆");
@@ -14,27 +12,27 @@ class Program
             control.StartGame();
             KeepPlaying = AskToRestart();
         }
-        GoodbyeMessage();
+        ShowGoodbyeMessage();
     }
 
     /// <summary>
-    /// リスタートしかいか確認するメソード
+    /// リスタートしたいか確認するメソッド
     /// </summary>
-    /// <returns></returns>
+    /// <returns>リセットするか確認メッセージ</returns>
     private static bool AskToRestart()
     {
-        Console.WriteLine(Line);
+        Console.WriteLine(Control.Line);
         Console.WriteLine("ゲームをリスタートしますか。リスタートしたい場合は Y を、終了したい場合は任意のキーを入力してください！");
         string answer = Console.ReadLine().ToLower();
         return (answer == "y");
     }
 
     /// <summary>
-    /// Goodbyeメッセージを表示するメソード
+    /// Goodbyeメッセージを表示するメソッド
     /// </summary>
-    private static void GoodbyeMessage()
+    private static void ShowGoodbyeMessage()
     {
-        Console.WriteLine(Line);
+        Console.WriteLine(Control.Line);
         Console.WriteLine("★☆★☆　ゲームを終了しました！★☆★☆");
     }
 }

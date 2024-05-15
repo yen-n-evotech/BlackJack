@@ -5,7 +5,14 @@
     /// </summary>
     internal class Deck  
     {
+        /// <summary>
+        /// カードリスト
+        /// </summary>
         private List<Card> CardsList = new List<Card>();
+
+        /// <summary>
+        /// 山札コンストラクタ
+        /// </summary>
         public Deck()
         {
             string[] type = {"ハート","ダイヤ","スペード","クラブ"};
@@ -38,9 +45,9 @@
         }
 
         /// <summary>
-        /// カードを引いて、deckでそのカードを削除するメソード
+        /// カードを引いて、deckでそのカードを削除するメソッド
         /// </summary>
-        /// <returns></returns>
+        /// <returns>カード</returns>
         public Card GetCard()
         {
             Card card = CardsList[0];

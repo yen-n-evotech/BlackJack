@@ -1,21 +1,37 @@
 ﻿using System.Text;
 
 namespace BlackJack
-{/// <summary>
-/// ゲームの進行を管理クラスです。
-/// </summary>
+{
+    /// <summary>
+    /// ゲームの進行を管理クラスです。
+    /// </summary>
     internal class Control
     {
+        /// <summary>
+        /// 山札
+        /// </summary>
         private Deck Deck;
+
+        /// <summary>
+        /// ディーラー
+        /// </summary>
         private Player Dealer;
+
+        /// <summary>
+        /// プレーヤー
+        /// </summary>
         private Player Player;
         public const string Line = "-------------------------------------------------";
+
+        /// <summary>
+        /// ゲームの新テーブルを作るココンストラクタ
+        /// </summary>
         public Control()
         {
-            Deck = new Deck(); //Deckクラスのインスタンス
+            Deck = new Deck(); // Deckクラスのインスタンス
             Deck.Shuffle();
-            Dealer = new Player(); //Playerクラスのインスタンス
-            Player = new Player(); //Playerクラスのインスタンス
+            Dealer = new Player(); // Playerクラスのインスタンス
+            Player = new Player(); // Playerクラスのインスタンス
         }
 
         /// <summary>
@@ -33,14 +49,15 @@ namespace BlackJack
             Console.WriteLine("あなたの引いたカード: " + Player.ShowCards(Player.Hand));
             Console.WriteLine($"あなたの現在の得点は{Player.GetHandValue()}です。\n");
             // ディーラーの手札を表示
-            Console.WriteLine("ディーラーの引いたカード: " + Player.ShowCards(new List<Card> { Dealer.Hand[0] }));
+            Console.WriteLine("ディーラーの引いたカード: " + Player.ShowCards(new List<Card> { Dealer.Hand[0] })); 
             Console.WriteLine("ディーラーの2枚目のカードは裏向きです。");
             SetPlayerTurn();
+            SetDealerTurn();
             ShowResults();
         }
 
         /// <summary>
-        /// カードを引きたいか確認するメソード
+        /// カードを引きたいか確認するメソッド
         /// </summary>
         private void ConfirmKeepPlaying()
         {
@@ -83,7 +100,6 @@ namespace BlackJack
                 {
                     Console.WriteLine(Line);
                     Console.WriteLine("あなたの番が終了したのでディーラーの番になります。\r\nディーラーは得点が17点以上になるまでカードを引きます。");
-                    SetDealerTurn();
                     break;
                 }
             }
@@ -99,7 +115,7 @@ namespace BlackJack
             Console.WriteLine($"ディーラーの現在の得点は{value}です。");
             while (true)
             {
-                if (Dealer.GetHandValue() < 17)
+                if (Dealer.GetHandValue() < 17 && Player.GetHandValue() < 21)
                 {
                     Card card = Deck.GetCard();
                     Dealer.AddCardToHand(card);
@@ -108,16 +124,20 @@ namespace BlackJack
                     value += card.Value;
                     Console.WriteLine($"ディーラーの現在の得点は{value}です。");
                 }
-                else
+                else if (Dealer.GetHandValue() > 17)
                 {
                     Console.WriteLine("17点以上になったため、ディーラーの番を終了します。");
                     break;
                 }
+                else
+                {
+                    break;
+                }                    
             }
         }
 
         /// <summary>
-        /// プレーヤーとディーラーの手札と勝敗を表示して結果を表示メソード
+        /// プレーヤーとディーラーの手札と勝敗を表示して結果を表示メソッド
         /// </summary>
         private void ShowResults()
         {
@@ -126,26 +146,28 @@ namespace BlackJack
             Console.WriteLine(Line);
             ShowParticipantCards("あなた", Player);
             ShowParticipantCards("ディーラー", Dealer);
-            GetResults();
+            ShowWinner();
         }
 
         /// <summary>
-        /// プレーヤーまたはディーラーの手札を表示するメソード
+        /// プレーヤーまたはディーラーの手札を表示するメソッド
         /// </summary>
-        /// <param name="participant"></param>
-        /// <param name="handHolder"></param>
+        /// <param name="participant">参加者</param>
+        /// <param name="handHolder">手札カード</param>
         private void ShowParticipantCards(string participant, Player handHolder)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(participant);
             sb.Append("  カード: ");
-            sb.AppendLine(handHolder.ShowCards(handHolder.Hand)); // ShowCards は Player クラスのメソッドと仮定
+            sb.AppendLine(handHolder.ShowCards(handHolder.Hand)); 
             sb.AppendLine($"  得点  ： {handHolder.GetHandValue()}点");
             sb.AppendLine(Line);
             Console.Write(sb.ToString());
         }
 
-        // 勝敗の結果を表す enum
+        /// <summary>
+        /// 勝敗の結果を表す 
+        /// </summary>
         private enum GameResult
         {
             Win,
@@ -154,10 +176,10 @@ namespace BlackJack
         }
 
         /// <summary>
-        /// 勝敗を判断メソード
+        /// 勝敗を判断メソッド
         /// </summary>
-        /// <returns></returns>
-        private GameResult? DetermineWinner()
+        /// <returns>勝敗</returns>
+        private GameResult DetermineWinner()
         {
             if (Player.GetHandValue() > 21)
             {
@@ -184,9 +206,9 @@ namespace BlackJack
         /// <summary>
         /// 勝敗を表示するメソッド
         /// </summary>
-        private void GetResults()
+        private void ShowWinner()
         {
-            GameResult? result = DetermineWinner();
+            GameResult result = DetermineWinner();
             switch (result)
             {
                 case GameResult.Win:
@@ -197,9 +219,6 @@ namespace BlackJack
                     break;
                 case GameResult.Draw:
                     Console.WriteLine("引き分けで終わりました！");
-                    break;
-                default:
-                    Console.WriteLine("結果が不明です。");
                     break;
             }
         }

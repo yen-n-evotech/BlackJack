@@ -7,21 +7,25 @@ namespace BlackJack
     /// </summary>
     internal class Player 
     {
-        public List<Card> Hand { get; set; } = new List<Card>();        
         /// <summary>
-        /// プレーヤーまたはディーラーの手札にカードを追加メソード
+        /// 手札のカードリスト
         /// </summary>
-        /// <param name="card"></param>
+        public List<Card> Hand { get; set; } = new List<Card>();  
+        
+        /// <summary>
+        /// プレーヤーまたはディーラーの手札にカードを追加メソッド
+        /// </summary>
+        /// <param name="card">カード</param>
         public void AddCardToHand(Card card)
         {
             Hand.Add(card);
         }
 
         /// <summary>
-        /// Rankに対応するValueを返却するメソード
+        /// Rankに対応するValueを返却するメソッド
         /// </summary>
-        /// <param name="rank"></param>
-        /// <returns></returns>
+        /// <param name="rank">かーどのランク</param>
+        /// <returns>カードの値</returns>
         public int GetCardValue(string rank)
         {
             switch (rank)
@@ -38,9 +42,9 @@ namespace BlackJack
         }
 
         /// <summary>
-        /// 手札カードの合計値を計算するメソード
+        /// 手札カードの合計値を計算するメソッド
         /// </summary>
-        /// <returns></returns>
+        /// <returns>手札カードの合計値</returns>
         public int GetHandValue()
         {
             int value = 0;
@@ -52,10 +56,10 @@ namespace BlackJack
         }
 
         /// <summary>
-        /// 手札を表示するメソード
+        /// 手札を表示するメソッド
         /// </summary>
-        /// <param name="hand"></param>
-        /// <returns></returns>
+        /// <param name="hand">手札カード</param>
+        /// <returns>手札</returns>
         public string ShowCards(List<Card> hand)
         {
             StringBuilder cardString = new StringBuilder();
