@@ -136,10 +136,13 @@ namespace BlackJack
         /// <param name="handHolder"></param>
         private void ShowParticipantCards(string participant, Player handHolder)
         {
-            Console.WriteLine(participant);
-            Console.WriteLine($"  カード: {Player.ShowCards(handHolder.Hand)}");
-            Console.WriteLine($"  得点  ： {handHolder.GetHandValue()}点");
-            Console.WriteLine(Line);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(participant);
+            sb.Append("  カード: ");
+            sb.AppendLine(handHolder.ShowCards(handHolder.Hand)); // ShowCards は Player クラスのメソッドと仮定
+            sb.AppendLine($"  得点  ： {handHolder.GetHandValue()}点");
+            sb.AppendLine(Line);
+            Console.Write(sb.ToString());
         }
 
         // 勝敗の結果を表す enum
