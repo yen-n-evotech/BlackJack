@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BlackJack
+﻿namespace BlackJack
 {
-    internal class Deck  //山札を表すクラス
+    /// <summary>
+    /// 山札を表すクラス
+    /// </summary>
+    internal class Deck  
     {
         private List<Card> CardsList = new List<Card>();
         public Deck()
@@ -14,8 +11,7 @@ namespace BlackJack
             string[] type = {"ハート","ダイヤ","スペード","クラブ"};
             string[] rank = {"A", "2", "3", "4", "5", "6", "7", "8", "9","10", "J", "Q", "K" };
             int[] value = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10 };
-
-            //カードをcreateしてdeckに追加
+            // カードをcreateしてdeckに追加
             for (int i = 0; i < type.Length; i++)
             {
                 for (int j = 0; j < rank.Length; j++)
@@ -26,7 +22,9 @@ namespace BlackJack
             }
         }
 
-        //カードをシャッフル
+        /// <summary>
+        /// カードをシャッフル
+        /// </summary>
         public void Shuffle()
         {
             Random random = new Random();
@@ -39,7 +37,10 @@ namespace BlackJack
             }
         }
 
-        //カードを引いて、deckでそのカードを削除
+        /// <summary>
+        /// カードを引いて、deckでそのカードを削除するメソード
+        /// </summary>
+        /// <returns></returns>
         public Card GetCard()
         {
             Card card = CardsList[0];
