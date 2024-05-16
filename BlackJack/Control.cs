@@ -42,17 +42,24 @@ namespace BlackJack
         public void StartGame()
         {
             Console.WriteLine("\nゲームを開始します");
+
             // playerと dealerはカードを引く
             Player.AddCardToHand(Deck.GetCard());
             Player.AddCardToHand(Deck.GetCard());
             Dealer.AddCardToHand(Deck.GetCard());
             Dealer.AddCardToHand(Deck.GetCard());
+
             // プレーヤーの手札を表示
             Console.WriteLine("あなたの引いたカード: " + Player.ShowCards(Player.Hand));
             Console.WriteLine($"あなたの現在の得点は{Player.GetHandValue()}です。\n");
+
             // ディーラーの手札を表示
             Console.WriteLine("ディーラーの引いたカード: " + Player.ShowCards(new List<Card> { Dealer.Hand[0] })); 
             Console.WriteLine("ディーラーの2枚目のカードは裏向きです。");
+
+            /* プレーヤーの番が終了してから、ディーラーの番になります。
+             * その後、結果を表示
+             */
             SetPlayerTurn();
             SetDealerTurn();
             ShowResults();
@@ -74,19 +81,27 @@ namespace BlackJack
         {
             int value = Player.GetHandValue();
             ConfirmKeepPlaying();
+
             // プレーヤーがヒットするかスタンドするかを選択
             while (true)
             {
                 string choice = Console.ReadLine().ToLower();
+
+                /* ヒットしたい場合、「y」を入力します。そのとき、新カードを引いて、新カードと得点を表示
+                 * 得点が22以上になら、バースになります。プレーヤーがカードを引きません。
+                 * スタンドしたい場合、「n」を入力します。カードを引きません。プレーヤーの番が終了したのでディーラーの番になります。 
+                 */
                 if (choice == "y") // ヒット
                 {
                     // カードを引いてdeckに追加
                     Card card = Deck.GetCard();
                     Player.AddCardToHand(card);
+
                     // プレーヤーが引いたカードを表示
                     Console.WriteLine($"あなたが引いたカード: {card.Type}の{card.Rank}");
                     value += card.Value;
                     Console.WriteLine($"あなたの現在の得点は{value}です。");
+
                     // プレーヤーの合計値が22以上になら、burstになる
                     if (Player.GetHandValue() >= 22)
                     {
@@ -117,10 +132,15 @@ namespace BlackJack
             Console.WriteLine($"ディーラーの現在の得点は{value}です。");
             while (true)
             {
+                /* プレーヤーの番が終了してから、ディーラーは得点が17点以上になるまでカードを引きます。
+                 * プレーヤーの得点が21点以上になると、ディーラーがカードを引きません。
+                 */
                 if (Dealer.GetHandValue() < 17 && Player.GetHandValue() < 21)
                 {
+                    // カードを引いてdeckに追加
                     Card card = Deck.GetCard();
                     Dealer.AddCardToHand(card);
+
                     // ディーラーが引いたカードを表示
                     Console.WriteLine($"ディーラーが引いたカード: {card.Type}の{card.Rank}");
                     value += card.Value;

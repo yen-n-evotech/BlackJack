@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {        
-        Console.WriteLine("★☆★☆　ブラックジャックへようこそ！　★☆★☆");
+        Console.WriteLine("★☆★☆ ブラックジャックへようこそ！ ★☆★☆");
         bool KeepPlaying = true;
         while (KeepPlaying)
         {
@@ -33,6 +33,6 @@ class Program
     private static void ShowGoodbyeMessage()
     {
         Console.WriteLine(Control.Line);
-        Console.WriteLine("★☆★☆　ゲームを終了しました！★☆★☆");
+        Console.WriteLine("★☆★☆ ゲームを終了しました！ ★☆★☆");
     }
 }

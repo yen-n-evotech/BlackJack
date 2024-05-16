@@ -67,6 +67,7 @@ namespace BlackJack
             {
                 cardString.Append($"{card.Type}の{card.Rank}、");
             }
+
             // 最後の読点を削除する（ある場合）
             if (cardString.Length > 0)
             {
