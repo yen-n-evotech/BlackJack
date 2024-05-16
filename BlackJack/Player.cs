@@ -24,7 +24,7 @@ namespace BlackJack
         /// <summary>
         /// Rankに対応するValueを返却するメソッド
         /// </summary>
-        /// <param name="rank">かーどのランク</param>
+        /// <param name="rank">カードのランク</param>
         /// <returns>カードの値</returns>
         public int GetCardValue(string rank)
         {

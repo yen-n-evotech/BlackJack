@@ -5,8 +5,19 @@
     /// </summary>
     internal class Card
     {
+        /// <summary>
+        /// カードの種類のプロパティ
+        /// </summary>
         public string Type { get; set; }
+
+        /// <summary>
+        /// カードのランクのプロパティ
+        /// </summary>
         public string Rank { get; set; }
+
+        /// <summary>
+        /// カードの値のプロパティ
+        /// </summary>
         public int Value { get; set; }
 
         /// <summary>

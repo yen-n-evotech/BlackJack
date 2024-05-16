@@ -21,10 +21,12 @@ namespace BlackJack
         /// プレーヤー
         /// </summary>
         private Player Player;
+
+        // 見やすくするための文字列定数
         public const string Line = "-------------------------------------------------";
 
         /// <summary>
-        /// ゲームの新テーブルを作るココンストラクタ
+        /// ゲームの新テーブルを作るコンストラクタ
         /// </summary>
         public Control()
         {
@@ -170,8 +172,19 @@ namespace BlackJack
         /// </summary>
         private enum GameResult
         {
+            /// <summary>
+            /// 勝ち
+            /// </summary>
             Win,
+
+            /// <summary>
+            /// 負け
+            /// </summary>
             Lose,
+
+            /// <summary>
+            /// 引き分け
+            /// </summary>
             Draw
         }
 
@@ -195,7 +208,7 @@ namespace BlackJack
             }
             else if (Player.GetHandValue() == Dealer.GetHandValue())
             {
-                return GameResult.Draw; // 引き分け
+                return GameResult.Draw; 
             }
             else
             {
