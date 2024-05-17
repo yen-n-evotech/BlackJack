@@ -20,10 +20,7 @@ namespace BlackJack
         /// <summary>
         /// プレーヤー
         /// </summary>
-        private Player Player;
-
-        // 見やすくするための文字列定数
-        public const string Line = "-------------------------------------------------";
+        private Player Player;        
 
         /// <summary>
         /// ゲームの新テーブルを作るコンストラクタ
@@ -72,7 +69,7 @@ namespace BlackJack
         /// </summary>
         private void ConfirmKeepPlaying()
         {
-            Console.WriteLine(Line);
+            Console.WriteLine(ConstString.SeparatorLine);
             Console.WriteLine("カードを引きますか。引く場合は Y を、引かない場合は N を入力してください！");
         }
 
@@ -117,7 +114,7 @@ namespace BlackJack
                 }
                 else if (choice == "n") // スタンド
                 {
-                    Console.WriteLine(Line);
+                    Console.WriteLine(ConstString.SeparatorLine);
                     Console.WriteLine("あなたの番が終了したのでディーラーの番になります。\r\nディーラーは得点が17点以上になるまでカードを引きます。");
                     break;
                 }
@@ -167,7 +164,7 @@ namespace BlackJack
         {
             Console.WriteLine("\r\nゲームが終了しました。\r\n");
             Console.WriteLine("結果");
-            Console.WriteLine(Line);
+            Console.WriteLine(ConstString.SeparatorLine);
             ShowParticipantCards("あなた", Player);
             ShowParticipantCards("ディーラー", Dealer);
             ShowWinner();
@@ -185,7 +182,7 @@ namespace BlackJack
             sb.Append("  カード: ");
             sb.AppendLine(handHolder.ShowCards(handHolder.Hand)); 
             sb.AppendLine($"  得点  ： {handHolder.GetHandValue()}点");
-            sb.AppendLine(Line);
+            sb.AppendLine(ConstString.SeparatorLine);
             Console.Write(sb.ToString());
         }
 

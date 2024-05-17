@@ -1,6 +1,6 @@
 ﻿using BlackJack;
 
-class Program
+public class Program
 {
     static void Main(string[] args)
     {        
@@ -21,7 +21,7 @@ class Program
     /// <returns>リセットするか確認メッセージ</returns>
     private static bool AskToRestart()
     {
-        Console.WriteLine(Control.Line);
+        Console.WriteLine(ConstString.SeparatorLine);
         Console.WriteLine("ゲームをリスタートしますか。リスタートしたい場合は Y を、終了したい場合は任意のキーを入力してください！");
         string answer = Console.ReadLine().ToLower();
         return (answer == "y");
@@ -32,7 +32,18 @@ class Program
     /// </summary>
     private static void ShowGoodbyeMessage()
     {
-        Console.WriteLine(Control.Line);
+        Console.WriteLine(ConstString.SeparatorLine);
         Console.WriteLine("★☆★☆ ゲームを終了しました！ ★☆★☆");
     }
+}
+
+/// <summary>
+/// ConstStringクラス
+/// </summary>
+public static class ConstString
+{
+    /// <summary>
+    /// 区切り線の定数 
+    /// </summary>
+    public const string SeparatorLine = "-------------------------------------------------";
 }
