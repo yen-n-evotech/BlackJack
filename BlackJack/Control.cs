@@ -57,11 +57,13 @@ namespace BlackJack
             Console.WriteLine("ディーラーの引いたカード: " + Player.ShowCards(new List<Card> { Dealer.Hand[0] })); 
             Console.WriteLine("ディーラーの2枚目のカードは裏向きです。");
 
-            /* プレーヤーの番が終了してから、ディーラーの番になります。
-             * その後、結果を表示
-             */
+            // プレイヤーのターン
             SetPlayerTurn();
+
+            // ディーラーのターン
             SetDealerTurn();
+
+            // 結果を表示 
             ShowResults();
         }
 
